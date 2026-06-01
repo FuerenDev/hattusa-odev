@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Hometown – Çorum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<style>
+@page { size: A4 portrait; margin: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #5a5a5a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  background: #f4ead8;
+  font-family: 'Rubik', Georgia, serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 50px rgba(0,0,0,0.55);
+  position: relative;
+}
+
+/* ── HERO ─────────────────────────────── */
+.hero {
+  position: relative;
+  height: 78mm;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a2e18 0%, #2a4830 50%, #1e3820 100%);
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  opacity: 0.88;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,  rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0)    0%, rgba(0,0,0,0.1)  40%, rgba(0,0,0,0.78) 100%);
+}
+
+.hero-badge {
+  position: absolute;
+  top: 6mm;
+  right: 6mm;
+  border: 1.5px solid rgba(212,168,32,0.85);
+  color: #f0c840;
+  font-family: 'Rubik', serif;
+  font-size: 6.8pt;
+  letter-spacing: 0.32em;
+  padding: 2mm 4.5mm;
+  text-transform: uppercase;
+  background: rgba(10,20,10,0.55);
+  backdrop-filter: blur(2px);
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 6mm;
+  left: 8mm;
+  right: 8mm;
+}
+
+.hero-title {
+  font-family: 'Rubik', Georgia, serif;
+  font-size: 46pt;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 0 48px rgba(0,0,0,0.5);
+}
+
+.hero-title em {
+  font-style: normal;
+  color: #f5c640;
+}
+
+.hero-sub {
+  margin-top: 2mm;
+  font-family: 'Crimson Pro', serif;
+  font-size: 8.2pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+
+/* ── GOLD RULE ──────────────────────────── */
+.gold-rule {
+  height: 3px;
+  flex-shrink: 0;
+  background: linear-gradient(to right, #7a5800 0%, #d4a820 20%, #f5c840 50%, #d4a820 75%, #7a5800 100%);
+}
+
+/* ── GRID ───────────────────────────────── */
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  min-height: 0;
+}
+
+.cell {
+  padding: 5mm 6mm 4mm;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.cell-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  margin-bottom: 2mm;
+}
+
+.divider {
+  height: 1px;
+  margin-bottom: 3mm;
+  background: currentColor;
+  opacity: 0.28;
+}
+
+.cell-body {
+  font-size: 7.9pt;
+  line-height: 1.6;
+}
+
+.cell-body em { font-style: italic; }
+
+.cell-body ul { list-style: none; }
+.cell-body li { padding-left: 10px; position: relative; margin-bottom: 1.5mm; }
+.cell-body li::before { content: '–'; position: absolute; left: 0; opacity: 0.6; }
+
+/* ── THEMES ─────────────────────────────── */
+.c-about {
+  background: linear-gradient(150deg, #183318 0%, #245224 100%);
+  color: #ddeedd;
+}
+.c-about .cell-title { color: #f5c840; }
+
+.c-extra {
+  background: linear-gradient(150deg, #0e0e12 0%, #1a1a24 100%);
+  color: #b8bece;
+}
+.c-extra .cell-title { color: #f0b830; }
+
+.c-facts {
+  background: linear-gradient(150deg, #ede4d2 0%, #f5eedd 100%);
+  color: #181410;
+}
+.c-facts .cell-title { color: #1c3c1a; }
+.c-facts .divider    { background: #1c3c1a; }
+
+.c-cuisine {
+  background: linear-gradient(150deg, #4a0c0c 0%, #721818 100%);
+  color: #f0dede;
+}
+.c-cuisine .cell-title { color: #f5c840; }
+
+.c-history {
+  background: linear-gradient(150deg, #080e18 0%, #101c2e 100%);
+  color: #a8bece;
+}
+.c-history .cell-title { color: #88b8de; }
+
+/* ── LEBLEBI CELL ───────────────────────── */
+.c-leblebi {
+  background: linear-gradient(145deg, #8a6008 0%, #c0880a 55%, #a07010 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.8mm;
+  padding: 6mm 4mm;
+}
+
+.lbl-kicker {
+  font-family: 'Crimson Pro', serif;
+  font-size: 6.2pt;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,245,200,0.65);
+}
+
+.lbl-word {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  font-size: 30pt;
+  color: #fff8dc;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.lbl-tr {
+  font-family: 'Crimson Pro', serif;
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,245,180,0.7);
+}
+
+.lbl-line {
+  width: 18mm;
+  height: 1px;
+  background: rgba(255,245,200,0.38);
+  margin: 1mm 0;
+}
+
+.lbl-tag {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 7.8pt;
+  color: rgba(255,245,200,0.88);
+}
+
+/* ── PRINT ──────────────────────────────── */
+@media print {
+  html, body { background: none !important; padding: 0; display: block; }
+  .page { box-shadow: none; }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO ────────────────────────────── -->
+  <div class="hero">
+    <img class="hero-img" id="heroImg"
+      src="https://turkiyeturizmansiklopedisi.com/uploads/img/2025/02/28/2fe04e27b380477d143086f403bbedf0b1ee6631.PNG"
+      alt="Hattusa"
+      referrerpolicy="no-referrer">
+    <div class="hero-gradient"></div>
+    <div class="hero-badge">MY HOMETOWN</div>
+    <div class="hero-content">
+      <div class="hero-title"><em>Ç</em>orum</div>
+      <div class="hero-sub">Türkiye &nbsp;·&nbsp; Central Anatolia &nbsp;·&nbsp; Land of the Hittites</div>
+    </div>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <!-- ── GRID ────────────────────────────── -->
+  <div class="grid">
+
+    <div class="cell c-about">
+      <div class="cell-title">About Çorum</div>
+      <div class="divider"></div>
+      <div class="cell-body">
+        Çorum is a city in northern Central Anatolia, Türkiye. With a population of around 230,000, it is a calm, safe, and welcoming place to live. The city is widely known as the <em>"Leblebi Capital"</em> of the world — leblebi are a type of roasted chickpea beloved all across Türkiye. Çorum blends a deep historical background with a close-knit modern community.
+      </div>
+    </div>
+
+    <div class="cell c-extra">
+      <div class="cell-title">Extra Info</div>
+      <div class="divider"></div>
+      <div class="cell-body">
+        Çorum has a continental climate with cold, snowy winters and hot, dry summers. The city is surrounded by rolling steppe hills. Ankara is roughly 230 km to the southwest, and Samsun on the Black Sea coast is about 180 km to the north. Despite its modest size, Çorum attracts visitors from all over the world thanks to the nearby UNESCO site of Hattusa.
+      </div>
+    </div>
+
+    <div class="cell c-facts">
+      <div class="cell-title">Interesting Facts</div>
+      <div class="divider"></div>
+      <ul class="cell-body">
+        <li>Çorum's <em>leblebi</em> is exported to dozens of countries worldwide.</li>
+        <li><em>Hattusa</em>, the Hittite Empire's capital, is just 85 km away — a UNESCO World Heritage Site since 1986.</li>
+        <li>The annual <em>Hitit Kültür Festivali</em> brings thousands of tourists every summer.</li>
+        <li>Çorum ranks among the safest and most peaceful cities in Türkiye.</li>
+        <li>The city's pedestrian boulevard is one of the longest in Central Anatolia.</li>
+      </ul>
+    </div>
+
+    <div class="cell c-cuisine">
+      <div class="cell-title">Cuisine</div>
+      <div class="divider"></div>
+      <div class="cell-body">
+        The undisputed star is <em>leblebi</em> — roasted chickpeas in salted, spicy, or plain varieties. Locals also enjoy <em>keşkek</em>, a slow-cooked wheat and lamb stew made at weddings; <em>Çorum mantısı</em>, tiny dumplings with garlicky yoghurt; and hearty lamb soups. For dessert, <em>höşmerim</em> — a warm, sweet cheese dish — is a traditional favourite.
+      </div>
+    </div>
+
+    <div class="cell c-history">
+      <div class="cell-title">History</div>
+      <div class="divider"></div>
+      <div class="cell-body">
+        Çorum has a recorded history of over 4,000 years. The <em>Hittite Empire</em>, one of the ancient world's great civilisations, made this region its heartland around 1600 BCE. Their capital, <em>Hattusa</em>, near today's Boğazkale, is a UNESCO World Heritage Site. After the Hittites, the region passed through Phrygian, Persian, Roman, Byzantine, and Seljuk hands before joining the Ottoman Empire in the 15th century.
+      </div>
+    </div>
+
+    <div class="cell c-leblebi">
+      <div class="lbl-kicker">The Taste of Çorum</div>
+      <div class="lbl-word">LEBLEBİ</div>
+      <div class="lbl-tr">Roasted Chickpeas</div>
+      <div class="lbl-line"></div>
+      <div class="lbl-tag">Capital of the World</div>
+    </div>
+
+  </div>
+</div>
+<script>
+// Fallback chain — tries sources in order until one loads
+const img = document.getElementById('heroImg');
+const sources = [
+  'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Hattusa_Panorama.jpg/1280px-Hattusa_Panorama.jpg&w=1200&q=85',
+  'https://wsrv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Hattusa_Panorama.jpg/1280px-Hattusa_Panorama.jpg&w=1200',
+  'https://images.weserv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Hattusa_Panorama.jpg&w=1200',
+  'https://upload.wikimedia.org/wikipedia/commons/e/ea/Hattusa_Panorama.jpg',
+];
+let i = 0;
+img.onerror = function() {
+  i++;
+  if (i < sources.length) { img.src = sources[i]; }
+};
+</script>
+</body>
+</html>
